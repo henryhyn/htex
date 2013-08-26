@@ -35,6 +35,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% 调用宏包 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 彩色主题
+\RequirePackage[table,dvipsnames,svgnames]{xcolor}
+\RequirePackage{theme/purple}
+
 % 超级链接
 \RequirePackage[setpagesize=false, % page size defined by xetex
                 unicode=false, % unicode breaks when used with xetex
@@ -116,3 +120,6 @@
 \fancypagestyle{plain}{\fancyhf{}                          % 重新定义plain, 这种pagestyle将应用于章开始页面
   \def\headrulewidth{0pt}
   \def\footrulewidth{0pt}}
+
+\RequirePackage{hframed}
+\RequirePackage{hcode}

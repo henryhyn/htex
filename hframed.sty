@@ -1,0 +1,49 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 标识自身 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{hframed}[2013/08/13\space v1.01\space by He Yongneng]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 调用宏包 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage[tikz]{mdframed}
+\mdfsetup{
+  leftmargin=1pt,
+  rightmargin=1pt,
+  innertopmargin=3pt,
+  innerbottommargin=3pt,
+  innerleftmargin=3pt,
+  innerrightmargin=3pt
+}
+
+\mdfdefinestyle{boxed}{
+  linecolor=framecolor,
+}
+
+\mdfdefinestyle{shaded}{
+  linecolor=framecolor,
+  backgroundcolor=shadecolor,
+%  hidealllines=true
+}
+
+\mdfdefinestyle{theoremstyle}{
+  frametitlefont={\hspace{-2em}\bf\color{textcolor}},
+  frametitlerule=true,
+  frametitleaboveskip=0pt,
+  frametitlebelowskip=0pt,
+  frametitlebackgroundcolor=frametitlecolor,
+  linecolor=framecolor,
+  backgroundcolor=shadecolor,
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 自定义宏 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{Shaded}
+{\begin{mdframed}[style=shaded]}
+{\end{mdframed}}
+
+\newenvironment{Boxed}
+{\begin{mdframed}[style=boxed]}
+{\end{mdframed}}
