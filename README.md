@@ -49,8 +49,12 @@ HTeX 样式框架, 以后简称 HTeX, 基于 CTeX 开发, 用于支持中文书�
 
 接下来, 安装 HTeX 宏包.
 
--   Windows 用户, 将项目克隆到 `[CTeX]\MiKTeX\tex\latex\` 路径下, 然后更新搜索路径 (`Accessories=>MiKTeX=>MiKTeX Options=>Refresh FNDB`).
--   类 Unix 用户, 将项目克隆到 `[TeXLive]/texmf-dist/tex/latex/` 路径下, 然后执行 `texhash` 命令, 更新搜索路径.
+-   Windows 用户, 将项目克隆到 `[CTeX]\MiKTeX\tex\latex\` 路径下,
+    将项目下的参考文献样式文件 `GBT7714-2005AYLang.bst` 和 `GBT7714-2005NLang.bst` 拷贝到 `[CTeX]\MiKTeX\bibtex\bst\base` 路径下,
+    最后更新搜索路径 (`Accessories=>MiKTeX=>MiKTeX Options=>Refresh FNDB`).
+-   类 Unix 用户, 将项目克隆到 `[TeXLive]/texmf-dist/tex/latex/` 路径下,
+    将项目下的参考文献样式文件 `GBT7714-2005AYLang.bst` 和 `GBT7714-2005NLang.bst` 拷贝到 `[TeXLive]/texmf-dist/bibtex/bst/base` 路径下,
+    最后执行 `texhash` 命令, 更新搜索路径.
 
 ## 选项
 
