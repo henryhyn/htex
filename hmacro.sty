@@ -5,6 +5,34 @@
 \ProvidesPackage{hmacro}[2013/08/25\space v0.01\space by Henry He]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 定义选项 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 纸张大小
+% a4paper  A4 纸
+% a5paper  A5 纸
+% a6paper  A6 纸
+\newif\if@afour\@afourfalse
+\newif\if@afive\@afivefalse
+\newif\if@asix\@asixfalse
+\DeclareOption{a4paper}{\@afourtrue}
+\DeclareOption{a5paper}{\@afivetrue}
+\DeclareOption{a6paper}{\@asixtrue}
+
+\newif\if@header\@headerfalse
+\newif\if@footer\@footerfalse
+\newif\if@margin\@marginfalse
+\DeclareOption{header}{\@headertrue}
+\DeclareOption{footer}{\@footertrue}
+\DeclareOption{marginalnote}{\@margintrue}
+
+\newif\if@centering\@centeringfalse
+\DeclareOption{centering}{\@centeringtrue}
+
+\ProcessOptions\relax
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% 调用宏包 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 索引
@@ -28,3 +56,43 @@
 \renewcommand\backmatter{%
   \if@openright\cleardoublepage\else\clearpage\fi
   \@mainmatterfalse}
+
+% 页面边距
+\if@afour\RequirePackage[a4paper]{geometry}\fi
+\if@afive\RequirePackage[a5paper]{geometry}\fi
+\if@asix \RequirePackage[a6paper]{geometry}\fi
+
+\if@header\geometry{includehead,top=5mm}\else\geometry{top=10mm}\fi
+\if@footer\geometry{includefoot,bottom=5mm}\else\geometry{bottom=10mm}\fi
+\if@margin\geometry{includemp,marginparwidth=69pt}\fi
+
+\if@centering\geometry{left=10mm,right=10mm}\else\geometry{left=15mm,right=10mm}\fi
+
+
+% 页脚页眉
+\pagestyle{fancy}
+\fancyhf{}
+\if@header
+  \fancyhead[LO]{右页眉}
+  \fancyhead[CO]{右页眉}
+  \fancyhead[RO]{右页眉}
+  \fancyhead[LE]{左页眉}
+  \fancyhead[CE]{左页眉}
+  \fancyhead[RE]{左页眉}
+  \def\headrulewidth{1pt}
+\else
+  \def\headrulewidth{0pt}
+\fi
+\if@footer
+  \fancyfoot[LO]{右页脚}
+  \fancyfoot[CO]{右页脚}
+  \fancyfoot[RO]{右页脚}
+  \fancyfoot[LE]{左页脚}
+  \fancyfoot[CE]{左页脚}
+  \fancyfoot[RE]{左页脚}
+  \def\footrulewidth{1pt}
+\fi
+
+\fancypagestyle{plain}{\fancyhf{}                          % 重新定义plain, 这种pagestyle将应用于章开始页面
+  \def\headrulewidth{0pt}
+  \def\footrulewidth{0pt}}
