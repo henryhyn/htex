@@ -15,3 +15,16 @@
 \let\oldcitep\citep
 \renewcommand{\citep}[2][]{\textsuperscript{\oldcitep{#2}#1}}
 \bibliographystyle{GBT7714-2005NLang}%
+
+% 文档区域划分
+\renewcommand\frontmatter{%
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \@mainmatterfalse
+  \pagenumbering{roman}}
+\renewcommand\mainmatter{%
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \@mainmattertrue
+  \pagenumbering{arabic}}
+\renewcommand\backmatter{%
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \@mainmatterfalse}
