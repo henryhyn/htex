@@ -35,6 +35,26 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% 调用宏包 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 超级链接
+\RequirePackage[setpagesize=false, % page size defined by xetex
+                unicode=false, % unicode breaks when used with xetex
+                xetex]{hyperref}
+\hypersetup{breaklinks=true,
+            CJKbookmarks,
+            bookmarks=true,
+            bookmarksopen,
+            bookmarksnumbered,
+            bookmarksdepth=chapter,
+            pdfauthor={},
+            pdftitle={},
+            colorlinks=true,
+            urlcolor=blue,
+            linkcolor=magenta,
+            linktocpage,
+            pdfborder={0 0 0},
+            pdfstartview=FitH}
+\urlstyle{same}  % don't use monospace font for urls
+
 % 索引
 \RequirePackage{makeidx}\makeindex
 
