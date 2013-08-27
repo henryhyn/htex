@@ -39,6 +39,17 @@
 \RequirePackage[table,dvipsnames,svgnames]{xcolor}
 \RequirePackage{theme/purple}
 
+% 插图
+\RequirePackage{graphicx}
+\graphicspath{{images/}}
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+\else\Gin@nat@width\fi}
+\let\oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[1]{\oldincludegraphics[width=.618\maxwidth]{#1}}
+
+% 菜单, 键盘, 目录
+\RequirePackage{menukeys}
+
 % 超级链接
 \RequirePackage[setpagesize=false, % page size defined by xetex
                 unicode=false, % unicode breaks when used with xetex
