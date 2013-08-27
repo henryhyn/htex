@@ -47,6 +47,14 @@
 \let\oldincludegraphics\includegraphics
 \renewcommand{\includegraphics}[1]{\oldincludegraphics[width=.618\maxwidth]{#1}}
 
+% 表格
+\RequirePackage{longtable}
+\RequirePackage{booktabs,tabularx,multirow}
+\def\toprule{\specialrule{0.08em}{0pt}{0pt}}
+\def\midrule{\specialrule{0.05em}{0pt}{0pt}}
+\def\bottomrule{\specialrule{0.08em}{0pt}{0pt}}
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
+
 % 菜单, 键盘, 目录
 \RequirePackage{menukeys}
 
