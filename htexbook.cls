@@ -8,5 +8,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%% 加载类型宏包 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \LoadClassWithOptions{ctexbook}
-\PassOptionsToClass{adobefonts,fancyhdr,fntef,\CurrentOption}{ctexbook}
+\PassOptionsToClass{\CurrentOption}{ctexbook}
 \RequirePackage[\CurrentOption]{hmacro}
