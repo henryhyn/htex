@@ -12,11 +12,24 @@
 \RequirePackage{verbatim}
 \newwrite\Example@out
 
+\RequirePackage{listings}
+\lstset{%
+  backgroundcolor=\color{shadecolor},
+  frame=single,rulecolor=\color{framecolor},
+  xleftmargin=3.4pt,xrightmargin=3.4pt,
+  resetmargins=true,
+  basicstyle=\small\ttfamily,
+  breaklines=true,
+  columns=fullflexible,
+  breakindent=0pt
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% 自定义宏 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\VerbBar}{|}
 \newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\VerbatimFootnotes
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\small}
 
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
@@ -51,8 +64,5 @@
   \verb@start
 }{
   \verb@end
-  \begin{Shaded}
-  \small
-  \verbatiminput{\jobname.exa}
-  \end{Shaded}
+  \lstinputlisting{\jobname.exa}
 }
