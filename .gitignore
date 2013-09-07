@@ -1,0 +1,10 @@
+test/*.aux
+test/*.log
+test/*.pdf
+test/*.toc
+test/*.blg
+test/*.bbl
+test/*.idx
+test/*.ind
+test/*.ilg
+test/*.out

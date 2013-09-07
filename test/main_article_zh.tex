@@ -1,0 +1,14 @@
+\documentclass[adobefonts,fancyhdr,fntef,a5paper,footer,centering]{htexart}
+
+\title{文章标题}
+\author{作者}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\input{sect01-chinese}
+
+\addcontentsline{toc}{section}{\refname}
+\bibliography{/usr/local/texlive/2013/texmf-dist/tex/latex/htex/htexbib}
+\end{document}

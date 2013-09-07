@@ -1,0 +1,30 @@
+\documentclass[adobefonts,fancyhdr,fntef,a5paper,header,openany]{htexbook}
+
+\title{书的名字}
+\author{作者}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\frontmatter
+\include{preface-chinese}
+
+\tableofcontents
+% \listoffigures
+% \listoftables
+
+\mainmatter
+\include{chap01-chinese}
+
+\begin{appendix}
+\include{appx01-chinese}
+\end{appendix}
+
+\backmatter
+\addcontentsline{toc}{chapter}{\refname}
+\bibliography{/usr/local/texlive/2013/texmf-dist/tex/latex/htex/htexbib}
+\newpage
+\addcontentsline{toc}{chapter}{\indexname}
+\printindex
+\end{document}

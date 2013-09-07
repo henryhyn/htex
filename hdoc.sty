@@ -1,0 +1,241 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 标识自身 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{hdoc}[2013/09/07\space v2.0\space by Henry He]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 定义选项 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 纸张大小
+% a4paper  A4 纸
+% a5paper  A5 纸
+% a6paper  A6 纸
+\newif\if@afour\@afourfalse
+\newif\if@afive\@afivefalse
+\newif\if@asix\@asixfalse
+\DeclareOption{a4paper}{\@afourtrue}
+\DeclareOption{a5paper}{\@afivetrue}
+\DeclareOption{a6paper}{\@asixtrue}
+
+% 页脚页眉边注
+% header 页眉
+% footer 页脚
+% marginalnote 边注
+\newif\if@header\@headerfalse
+\newif\if@footer\@footerfalse
+\newif\if@margin\@marginfalse
+\DeclareOption{header}{\@headertrue}
+\DeclareOption{footer}{\@footertrue}
+\DeclareOption{marginalnote}{\@margintrue}
+
+% 页芯水平居中
+\newif\if@centering\@centeringfalse
+\DeclareOption{centering}{\@centeringtrue}
+
+% 节标题居中
+% secleft 节标题左对齐
+\newif\if@secleft\@secleftfalse
+\DeclareOption{secleft}{\@seclefttrue}
+
+\ProcessOptions\relax
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 页面版式 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 页面参数
+\setlength{\parskip}{.5em plus .25em minus .25em}
+\setlength{\headheight}{1.3em}
+
+% 纸张大小
+\if@afour\RequirePackage[a4paper]{geometry}\fi
+\if@afive\RequirePackage[a5paper]{geometry}\fi
+\if@asix \RequirePackage[a6paper]{geometry}\fi
+
+% 页脚页眉边注
+\if@header\geometry{includehead,top=5mm}\else\geometry{top=10mm}\fi
+\if@footer\geometry{includefoot,bottom=5mm}\else\geometry{bottom=10mm}\fi
+\if@margin\geometry{includemp,marginparwidth=69pt}\fi
+
+% 页芯水平居中
+\if@centering\geometry{left=10mm,right=10mm}\else\geometry{left=15mm,right=10mm}\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 页脚页眉 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\refname{参考文献}
+
+\pagestyle{fancy}
+\fancyhf{}
+\if@header
+  \if@twoside
+    \fancyhead[LO,RE]{\nouppercase{\@title}}
+    \fancyhead[CO]{\nouppercase{\rightmark}}
+    \fancyhead[CE]{\nouppercase{\leftmark}}
+    \fancyhead[RO,LE]{第\ \thepage\ 页}
+  \else
+    \fancyhead[L]{\nouppercase{\@title}}
+    \fancyhead[C]{\nouppercase{\leftmark}}
+    \fancyhead[R]{第\ \thepage\ 页}
+  \fi
+  \def\headrulewidth{1pt}
+\else
+  \def\headrulewidth{0pt}
+\fi
+\if@footer
+  \fancyfoot[C]{第\ \thepage\ 页}
+\fi
+
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \def\headrulewidth{0pt}
+  \if@footer
+    \fancyfoot[C]{第\ \thepage\ 页}
+  \fi
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 文档区域 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\frontmatter{%
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \@mainmatterfalse
+  \pagenumbering{roman}}
+\def\mainmatter{%
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \@mainmattertrue
+  \pagenumbering{arabic}}
+\def\backmatter{%
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \@mainmatterfalse}
+
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 2em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip 1.5em%
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+    \vskip 1em%
+    {\large \@date}%
+  \end{center}%
+  \vskip .5em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 章节命令 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\if@chinese
+  \if@book
+    \CTEXsetup[%name={第,回},
+               nameformat={\Large\bf},                     % 设置 chapter 的格式
+               titleformat={\Large},
+               beforeskip={0.1em plus0.1em minus0.1em},
+               afterskip={0.6em plus0.3em minus0.3em}]{chapter}
+    \CTEXsetup[name={\S,},                                 % 设置 section 的格式
+               format={\large\bf\centering},
+               beforeskip={0.4em plus0.2em minus0.2em},
+               afterskip={0.2em plus0.1em minus0.1em}]{section}
+  \else
+    \if@secleft
+      \CTEXsetup[format={\large\bf},                       % 设置 section 的格式
+                 beforeskip={0.4em plus0.2em minus0.2em},
+                 afterskip={0.2em plus0.1em minus0.1em}]{section}
+    \else
+      \CTEXsetup[format={\large\bf\centering},             % 设置 section 的格式
+                 %number={},
+                 beforeskip={0.4em plus0.2em minus0.2em},
+                 afterskip={0.2em plus0.1em minus0.1em}]{section}
+    \fi
+  \fi
+  \CTEXsetup[format={\bf},                                 % 设置 subsection 的格式
+             beforeskip={0.2em plus0.1em minus0.1em},
+             afterskip={0.1em plus0.1em minus0.1em}]{subsection}
+  \CTEXsetup[format={\bf},                                 % 设置 subsubsection 的格式
+             beforeskip={0.1pt},
+             afterskip={0.1pt}]{subsubsection}
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Chapter style
+\def\chapter{\clearpage\secdef\@chapter{}}
+\def\@chapter[#1]#2{\refstepcounter{chapter}
+                    \addcontentsline{toc}{chapter}{#1}
+                    \quad
+                    \vskip 1em plus0.5em minus0.5em
+                    \centerline{\LARGE\bf #1}
+                    \vskip 1em plus0.5em minus0.5em
+                    \@mkboth{#1}{#1}
+                    }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Section style
+%% Note: to justify, text width must be set to \textwidth - 2*(inner sep).
+\tikzstyle{sectionstyle}=[
+  inner sep=5pt,
+  text width=\textwidth-10pt,
+  left color=sectioncolor!100!white,
+  right color=sectioncolor!100!white,
+  text=textcolor,
+%  rounded corners,
+  shape=rectangle
+]
+
+\def\section#1{
+  \refstepcounter{section}
+  \addcontentsline{toc}{section}{#1}
+  \vskip 1em plus0.5em minus0.5em
+  \noindent
+  \begin{tikzpicture}
+    \node[sectionstyle] {\Large\bf\arabic{section}\quad#1};
+  \end{tikzpicture}
+  \vskip 0.2em plus0.1em minus0.1em
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Subsection style
+\tikzstyle{subsectionstyle}=[
+  inner sep=5pt,
+  left color=subsectioncolor!100!white,
+  right color=subsectioncolor!100!white,
+  text=textcolor,
+  shape=rectangle% ellipse
+]
+
+\def\subsection#1{
+  \stepcounter{subsection}
+  \vskip 1em plus0.5em minus0.5em
+  \noindent
+  \begin{tikzpicture}
+    \node[subsectionstyle,anchor=west] (number) at (0,0) {\large\bf\arabic{section}.\arabic{subsection}};
+    \node[above right,subsectioncolor,anchor=west] at ($(number.east)+(0.1,0)$) {\large\bf#1};
+  \end{tikzpicture}
+  \vskip 0.2em plus0.1em minus0.1em
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Subsubsection style
+\tikzstyle{subsubsectionstyle}=[
+  inner sep=5pt,
+  left color=subsubsectioncolor!100!white,
+  right color=subsubsectioncolor!100!white,
+  text=textcolor,
+  shape=rectangle%trapezium
+]
+
+\def\subsubsection#1{
+  \stepcounter{subsubsection}
+  \vskip 1em plus0.5em minus0.5em
+  \noindent
+  \begin{tikzpicture}
+    \node[subsubsectionstyle] (number) {\bf\arabic{section}.\arabic{subsection}.\arabic{subsubsection}};
+    \node[subsubsectioncolor, right of=number, anchor=west] {\bf#1};
+  \end{tikzpicture}
+  \vskip 0.2em plus0.1em minus0.1em
+}
