@@ -9,6 +9,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\if@chinese\@chinesetrue
 \DeclareOption{english}{\@chinesefalse}
+\newif\if@print\@printfalse
+\DeclareOption{print}{\@printtrue}
 \ProcessOptions\relax
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -16,6 +16,12 @@
 
 \ProcessOptions\relax
 
+\if@book
+  \def\hsec{chapter}
+\else
+  \def\hsec{section}
+\fi
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% 调用宏包 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -79,3 +85,13 @@
 
 \RequirePackage{hframed}
 \RequirePackage{hcode}
+\RequirePackage{amsmath}
+\RequirePackage{hthm}
+\RequirePackage{hchem}
+
+
+\newcommand{\blist}[2][l]{                                 % 数学列表
+  \if#1r\left.\else\left\{\fi
+  \begin{aligned}#2\end{aligned}
+  \if#1l\right.\else\right\}\fi
+}

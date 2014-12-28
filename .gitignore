@@ -8,3 +8,4 @@ test/*.idx
 test/*.ind
 test/*.ilg
 test/*.out
+.idea

@@ -1,0 +1,84 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 标识自身 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{hthm}[2010/09/09\space v0.01\space by He Yongneng]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 调用宏包 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{amsthm}
+\newtheoremstyle{mythm}{}{}{}{\if@chinese\parindent\else0em\fi}{\if@print\else\color{magenta}\fi\bf}{}{0.5em}{}
+\theoremstyle{mythm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 自定义宏 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\if@chinese
+  \def\temp@assumption{假设}
+  \def\temp@definition{定义}
+  \def\temp@conclusion{总结}
+  \def\temp@algorithm{算法}
+  \def\temp@experiment{实验}
+  \def\temp@example{例}
+  \def\temp@remark{注意}
+  \def\temp@note{评注}
+  \def\temp@theorem{定理}
+  \def\temp@axiom{公理}
+  \def\temp@lemma{引理}
+  \def\temp@property{性质}
+  \def\temp@corollary{推论}
+  \def\temp@proposition{命题}
+  \def\temp@claim{断言}
+  \def\temp@problem{疑问}
+  \def\temp@question{问题}
+  \def\temp@conjecture{猜想}
+  \def\temp@proof{证: }
+  \def\temp@solution{解: }
+  \def\temp@answer{答: }
+\else
+  \def\temp@assumption{Assumption}
+  \def\temp@definition{Definition}
+  \def\temp@conclusion{Conclusion}
+  \def\temp@algorithm{Algorithm}
+  \def\temp@experiment{Experiment}
+  \def\temp@example{Example}
+  \def\temp@remark{Remark}
+  \def\temp@note{Note}
+  \def\temp@theorem{Theorem}
+  \def\temp@axiom{Axiom}
+  \def\temp@lemma{Lemma}
+  \def\temp@property{Property}
+  \def\temp@corollary{Corollary}
+  \def\temp@proposition{Proposition}
+  \def\temp@claim{Claim}
+  \def\temp@problem{Problem}
+  \def\temp@question{Question}
+  \def\temp@conjecture{Conjecture}
+  \def\temp@proof{Proof. }
+  \def\temp@solution{Solution. }
+  \def\temp@answer{Answer. }
+\fi
+
+\newtheorem{assumption}{\temp@assumption}[\hsec]
+\newtheorem{definition}{\temp@definition}[\hsec]
+\newtheorem{conclusion}{\temp@conclusion}[\hsec]
+\newtheorem{algorithm}{\temp@algorithm}[\hsec]
+\newtheorem{experiment}{\temp@experiment}[\hsec]
+\newtheorem{example}{\temp@example}[\hsec]
+\newtheorem{remark}{\temp@remark}[\hsec]
+\newtheorem{nnote}{\temp@note}[\hsec]
+\newtheorem{theorem}{\temp@theorem}[\hsec]
+\newtheorem{axiom}[theorem]{\temp@axiom}
+\newtheorem{lemma}[theorem]{\temp@lemma}
+\newtheorem{property}[theorem]{\temp@property}
+\newtheorem{corollary}[theorem]{\temp@corollary}
+\newtheorem{proposition}[theorem]{\temp@proposition}
+\newtheorem{claim}[theorem]{\temp@claim}
+\newtheorem{problem}{\temp@problem}[\hsec]
+\newtheorem{question}{\temp@question}[\hsec]
+\newtheorem{conjecture}{\temp@conjecture}[\hsec]
+\renewenvironment{proof}[1][\temp@proof]{\trivlist\item[\hskip\labelsep\if@chinese\hskip\parindent\fi\if@print\else\color{magenta}\fi\bf#1]}{\qed\endtrivlist}
+\newenvironment{solution}[1][\temp@solution]{\trivlist\item[\hskip\labelsep\if@chinese\hskip\parindent\fi\if@print\else\color{magenta}\fi\bf#1]}{\qed\endtrivlist}
+\newenvironment{answer}[1][\temp@answer]{\trivlist\item[\hskip\labelsep\if@chinese\hskip\parindent\fi\if@print\else\color{magenta}\fi\bf#1]}{\qed\endtrivlist}
+\newenvironment{analysis}[1][Analysis.]{\trivlist\item[\hskip\labelsep\if@chinese\hskip\parindent\fi\if@print\else\color{magenta}\fi\bf#1]}{\endtrivlist}

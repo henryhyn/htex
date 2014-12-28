@@ -53,12 +53,12 @@
 \if@asix \RequirePackage[a6paper]{geometry}\fi
 
 % 页脚页眉边注
-\if@header\geometry{includehead,top=5mm}\else\geometry{top=10mm}\fi
-\if@footer\geometry{includefoot,bottom=5mm}\else\geometry{bottom=10mm}\fi
+\if@header\geometry{includehead,top=5mm}\else\geometry{top=5mm}\fi
+\if@footer\geometry{includefoot,bottom=5mm}\else\geometry{bottom=5mm}\fi
 \if@margin\geometry{includemp,marginparwidth=69pt}\fi
 
 % 页芯水平居中
-\if@centering\geometry{left=10mm,right=10mm}\else\geometry{left=15mm,right=10mm}\fi
+\if@centering\geometry{left=5mm,right=5mm}\else\geometry{left=15mm,right=10mm}\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% 页脚页眉 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -132,6 +132,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \if@chinese
   \if@book
+    \newenvironment{abstract}{\begin{quote}\small}{\end{quote}}
     \CTEXsetup[%name={第,回},
                nameformat={\Large\bf},                     % 设置 chapter 的格式
                titleformat={\Large},
@@ -161,7 +162,7 @@
              afterskip={0.1pt}]{subsubsection}
 \fi
 
-
+\endinput
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Chapter style
 \def\chapter{\clearpage\secdef\@chapter{}}
