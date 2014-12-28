@@ -52,13 +52,16 @@
 \if@afive\RequirePackage[a5paper]{geometry}\fi
 \if@asix \RequirePackage[a6paper]{geometry}\fi
 
-% 页脚页眉边注
-\if@header\geometry{includehead,top=5mm}\else\geometry{top=5mm}\fi
-\if@footer\geometry{includefoot,bottom=5mm}\else\geometry{bottom=5mm}\fi
-\if@margin\geometry{includemp,marginparwidth=69pt}\fi
+\if@print
+  \geometry{top=15mm,bottom=15mm}
+  \if@centering\geometry{left=15mm,right=15mm}\else\geometry{left=20mm,right=15mm}\fi
+\else
+  \geometry{top=5mm,bottom=5mm,left=5mm,right=5mm}
+\fi
 
-% 页芯水平居中
-\if@centering\geometry{left=5mm,right=5mm}\else\geometry{left=15mm,right=10mm}\fi
+\if@header\geometry{includehead}\fi
+\if@footer\geometry{includefoot}\fi
+\if@margin\geometry{includemp,marginparwidth=.2\textwidth}\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% 页脚页眉 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
